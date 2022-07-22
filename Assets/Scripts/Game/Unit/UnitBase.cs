@@ -73,7 +73,7 @@ public abstract class UnitBase : MonoBehaviour
 
         if (CurrentShield != null)
         {
-            totalCA += CurrentShield.CAModifier;
+            totalCA += CurrentShield.ACModifier;
         }
 
         return totalCA;

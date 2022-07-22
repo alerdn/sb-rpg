@@ -9,6 +9,18 @@ public class ScriptableArmor : ScriptableEquipment
     public bool AccumulativeAC;
     public int AccumulativeCap;
 
+    public override string Description()
+    {
+        if (AccumulativeAC)
+        {
+            if (AccumulativeCap == 0)
+                return $"{BaseAC} + Dexterity modifier";
+            else
+                return $"{BaseAC} + Dexterity modifier, max +{AccumulativeCap}";
+        }
+        else return $"{BaseAC}";
+    }
+
     public int GetAC(int dexterity)
     {
         if (AccumulativeAC)

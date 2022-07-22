@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1dcc9ba55a23c43927cc3aae1935c4, type: 3}
   m_Name: Basic Shield
   m_EditorClassIdentifier: 
-  CAModifier: 2
+  Sprite: {fileID: 3196750422772375246, guid: 21af63ec11816a349a6a82bc40f70610, type: 3}
+  IsEquipped: 1
+  ACModifier: 2

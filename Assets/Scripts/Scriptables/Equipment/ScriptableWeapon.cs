@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Armor", menuName = "RPG/Equipment/Weapon")]
+[CreateAssetMenu(fileName = "New Weapon", menuName = "RPG/Equipment/Weapon")]
 public class ScriptableWeapon : ScriptableEquipment
 {
     public int DiceAmount;
     public DiceType DiceType;
     public DamageType DamageType;
+    public AttributeType MainAttribute;
 
     /// <summary>
     /// Returns the damage based on the modifier
@@ -21,5 +22,10 @@ public class ScriptableWeapon : ScriptableEquipment
         }
 
         return total + modifier;
+    }
+
+    public override string Description()
+    {
+        return $"{DiceAmount}{DiceType} {DamageType} damage";
     }
 }

@@ -54,10 +54,7 @@ public class Hero : UnitBase, IAttacker, IDamageable
         HP = MaxHP;
 
         Inventory = _hero.Inventory;
-
-        CurrentArmor = Armors().ToList()[0];
-        CurrentWeapon = Weapons().ToList()[0];
-        CurrentShield = Shields().ToList()[0];
+        CheckEquipments();
 
         Abilities = Class.Abilities;
         AC = GetAC();
@@ -71,17 +68,45 @@ public class Hero : UnitBase, IAttacker, IDamageable
         }
     }
 
-    private void PrintInfo()
+    private void CheckEquipments()
     {
-        Debug.Log($"Strengh: {Stats.Strength} ({AttributeModifier(Stats.Strength)})");
-        Debug.Log($"Dexterity: {Stats.Dexterity} ({AttributeModifier(Stats.Dexterity)})");
-        Debug.Log($"Constitution: {Stats.Constitution} ({AttributeModifier(Stats.Constitution)})");
-        Debug.Log($"Intelligence: {Stats.Intelligence} ({AttributeModifier(Stats.Intelligence)})");
-        Debug.Log($"Wisdom: {Stats.Wisdom} ({AttributeModifier(Stats.Wisdom)})");
-        Debug.Log($"Charisma: {Stats.Charisma} ({AttributeModifier(Stats.Charisma)})");
+        foreach(var item in Inventory)
+        {
+            if (item.IsEquipped)
+            {
+                Equip(item);
+            }
+        }
+    }
 
-        Debug.Log($"AC: {AC}");
-        Debug.Log($"Max HP: {MaxHP}");
+    public void Equip(ScriptableEquipment equipment)
+    {
+        if (equipment is ScriptableArmor)
+        {
+            if (CurrentArmor != null) CurrentArmor.IsEquipped = false;
+            CurrentArmor = equipment as ScriptableArmor;
+        }
+        if (equipment is ScriptableWeapon)
+        {
+            if (CurrentWeapon != null) CurrentWeapon.IsEquipped = false;
+            CurrentWeapon = equipment as ScriptableWeapon;
+        }
+        if (equipment is ScriptableShield)
+        {
+            if (CurrentShield != null) CurrentShield.IsEquipped = false;
+            CurrentShield = equipment as ScriptableShield;
+        }
+
+        equipment.IsEquipped = true;
+    }
+    
+    public void Unequip(ScriptableEquipment equipment)
+    {
+        if (equipment is ScriptableArmor) CurrentArmor = null;
+        if (equipment is ScriptableWeapon) CurrentWeapon = null;
+        if (equipment is ScriptableShield) CurrentShield = null;
+
+        equipment.IsEquipped = false;
     }
 
     private int GetMaxHP()

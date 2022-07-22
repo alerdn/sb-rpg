@@ -21,3 +21,13 @@ public enum EquipmentType
     Weapon,
     Shield
 }
+
+public enum AttributeType
+{
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma
+}

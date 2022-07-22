@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001fc42c1ed7d384e8eeb1043109cc0d, type: 3}
   m_Name: Greatsword
   m_EditorClassIdentifier: 
+  Sprite: {fileID: -1748527091985446992, guid: 21af63ec11816a349a6a82bc40f70610, type: 3}
+  IsEquipped: 0
   DiceAmount: 2
   DiceType: 6
   DamageType: 2
+  MainAttribute: 0
