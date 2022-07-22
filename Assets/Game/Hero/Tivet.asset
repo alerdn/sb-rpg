@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cda332fbd590a4cacfcf6027ade30b, type: 3}
+  m_Name: Tivet
+  m_EditorClassIdentifier: 
+  Faction: 0
+  Name: Tivet
+  Sprite: {fileID: 5017263337231134796, guid: cf9e31f915c174c409fb5323cc3d288f, type: 3}
+  _stats:
+    Strength: 18
+    Dexterity: 13
+    Constitution: 14
+    Intelligence: 12
+    Wisdom: 8
+    Charisma: 10
+  Level: 1
+  ExperienceAmount: 120
+  Class: {fileID: 11400000, guid: 0ffc00711369d924184c5618279a5a3e, type: 2}
+  Race: {fileID: 11400000, guid: aafb24fde75aa56479e69830ca21e56e, type: 2}
+  Inventory:
+  - {fileID: 11400000, guid: 7626c9db44d10b840ad696287e3da17d, type: 2}
+  - {fileID: 11400000, guid: c293dcd85e06a8c43b3b253834a3b004, type: 2}
+  - {fileID: 11400000, guid: 53b7d71029b6eec428d18d91bb1af37c, type: 2}
+  - {fileID: 11400000, guid: 4cac68eaf2aaa23409c06990a3299d75, type: 2}
