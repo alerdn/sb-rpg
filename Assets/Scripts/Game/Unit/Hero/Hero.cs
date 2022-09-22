@@ -62,15 +62,17 @@ public class Hero : UnitBase, IAttacker, IDamageable
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ExperienceAmount += 50;
         }
+#endif
     }
 
     private void CheckEquipments()
     {
-        foreach(var item in Inventory)
+        foreach (var item in Inventory)
         {
             if (item.IsEquipped)
             {
@@ -79,10 +81,18 @@ public class Hero : UnitBase, IAttacker, IDamageable
         }
     }
 
-    public void Equip(ScriptableEquipment equipment)
+    public bool CanEquip(ScriptableEquipment equipment)
     {
+        return equipment.Classes.Any(c => c == Class.Name);
+    }
+
+    public bool Equip(ScriptableEquipment equipment)
+    {
+        if (!CanEquip(equipment)) return false;
+
         if (equipment is ScriptableArmor)
         {
+            // Setting 'false' to the previous equipped item
             if (CurrentArmor != null) CurrentArmor.IsEquipped = false;
             CurrentArmor = equipment as ScriptableArmor;
         }
@@ -98,8 +108,9 @@ public class Hero : UnitBase, IAttacker, IDamageable
         }
 
         equipment.IsEquipped = true;
+        return true;
     }
-    
+
     public void Unequip(ScriptableEquipment equipment)
     {
         if (equipment is ScriptableArmor) CurrentArmor = null;

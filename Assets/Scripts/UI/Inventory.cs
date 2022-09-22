@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Image _itemSprite;
     [SerializeField] private TMP_Text _itemName;
     [SerializeField] private TMP_Text _itemDescription;
+    [SerializeField] private TMP_Text _classesList;
     [SerializeField] private Button _equipBtn;
     [SerializeField] private Button _dropBtn;
 
@@ -32,6 +33,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject inventoryGrid;
 
     private ItemSlot _selectedSlot;
+    private Color textColor = new Color(0.2f, 0.2313726f, 0.2862745f);
+    private Color alertColor = new Color(1f, 0.3443396f, 0.3443396f);
 
     private void OnEnable()
     {
@@ -109,6 +112,9 @@ public class Inventory : MonoBehaviour
             _itemName.text = _selectedSlot.Equipment.name;
             _itemSprite.sprite = _selectedSlot.Equipment.Sprite;
             _itemDescription.text = _selectedSlot.Equipment.Description();
+            _classesList.text = $"classes: {String.Join(", ", _selectedSlot.Equipment.Classes)}";
+            if (!_hero.CanEquip(_selectedSlot.Equipment)) _classesList.color = alertColor;
+            else _classesList.color = textColor;
 
             if (_selectedSlot.Equipment.IsEquipped)
             {
@@ -130,7 +136,7 @@ public class Inventory : MonoBehaviour
 
     private void Equip(ScriptableEquipment equipment)
     {
-        _hero.Equip(equipment);
+        if (!_hero.Equip(equipment)) return;
 
         // Deselect slot
         _selectedSlot = null;

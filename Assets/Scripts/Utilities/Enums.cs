@@ -31,3 +31,14 @@ public enum AttributeType
     Wisdom,
     Charisma
 }
+
+public enum Class
+{
+    Warrior,
+    Wizard
+}
+
+public enum Race
+{
+    Tiefling
+}
