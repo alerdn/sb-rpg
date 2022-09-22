@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: -2164327049541415793, guid: 21af63ec11816a349a6a82bc40f70610, type: 3}
   IsEquipped: 0
+  Classes: 00000000
   DiceAmount: 1
   DiceType: 6
   DamageType: 2

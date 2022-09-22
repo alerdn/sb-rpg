@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Race", menuName = "RPG/Race")]
 public class ScriptableRace : ScriptableObject
 {
+    public Race race;
     public int BonusStrength;
     public int BonusDexterity;
     public int BonusConstitution;

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Basic Shield
   m_EditorClassIdentifier: 
   Sprite: {fileID: 3196750422772375246, guid: 21af63ec11816a349a6a82bc40f70610, type: 3}
-  IsEquipped: 1
+  IsEquipped: 0
+  Classes: 00000000
   ACModifier: 2

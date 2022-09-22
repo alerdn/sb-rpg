@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Padded Light Armor
   m_EditorClassIdentifier: 
   Sprite: {fileID: 6425460183669405670, guid: e2a2d3e92687818428ed7918915131b9, type: 3}
-  IsEquipped: 1
+  IsEquipped: 0
+  Classes: 00000000
   BaseAC: 11
   AccumulativeAC: 1
   AccumulativeCap: 0

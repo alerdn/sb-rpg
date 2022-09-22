@@ -7,4 +7,5 @@ public abstract class ScriptableEquipment : ScriptableObject
     public Sprite Sprite;
     public bool IsEquipped;
     public abstract string Description();
+    public List<Class> Classes;
 }
