@@ -9,9 +9,9 @@ public class Hero : UnitBase, IAttacker, IDamageable
     public event Action OnLevelUp;
 
     [SerializeField] private ScriptableHero _hero;
+    [SerializeField] private SpriteRenderer _renderer;
 
     public ScriptableClass Class { get; private set; }
-
     public bool IsLevelingUp { get; private set; } = false;
     public int Level { get; private set; }
     public int ExperienceAmount
@@ -58,6 +58,11 @@ public class Hero : UnitBase, IAttacker, IDamageable
 
         Abilities = Class.Abilities;
         AC = GetAC();
+    }
+
+    private void Start()
+    {
+        _renderer.sprite = _hero.Sprite;
     }
 
     private void Update()
