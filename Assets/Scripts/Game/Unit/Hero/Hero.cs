@@ -75,6 +75,11 @@ public class Hero : UnitBase, IAttacker, IDamageable
 #endif
     }
 
+    public void CollectEquipment(ScriptableEquipment equipment)
+    {
+        Inventory.Add(equipment);
+    }
+
     private void CheckEquipments()
     {
         foreach (var item in Inventory)
