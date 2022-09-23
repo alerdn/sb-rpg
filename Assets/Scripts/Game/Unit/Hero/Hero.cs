@@ -44,8 +44,8 @@ public class Hero : UnitBase, IAttacker, IDamageable
         Faction = _hero.Faction;
         Name = _hero.Name;
         Sprite = _hero.Sprite;
-        Class = _hero.Class;
-        Race = _hero.Race;
+        Class = Instantiate(_hero.Class);
+        Race = Instantiate(_hero.Race);
         Stats = CalculateStats(_hero.BaseStats, Race);
         Level = _hero.Level;
         ExperienceAmount = _hero.ExperienceAmount;
@@ -53,7 +53,11 @@ public class Hero : UnitBase, IAttacker, IDamageable
         MaxHP = GetMaxHP();
         HP = MaxHP;
 
-        Inventory = _hero.Inventory;
+        Inventory = new List<ScriptableEquipment>();
+        foreach (var equip in _hero.Inventory)
+        {
+            Inventory.Add(Instantiate(equip));
+        }
         CheckEquipments();
 
         Abilities = Class.Abilities;
@@ -77,7 +81,7 @@ public class Hero : UnitBase, IAttacker, IDamageable
 
     public void CollectEquipment(ScriptableEquipment equipment)
     {
-        Inventory.Add(equipment);
+        Inventory.Add(Instantiate(equipment));
     }
 
     private void CheckEquipments()

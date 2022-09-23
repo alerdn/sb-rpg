@@ -11,12 +11,14 @@ public class EquipmentPopUp : MonoBehaviour
 
     [SerializeField] private TMP_Text _name;
     [SerializeField] private Button _collectBtn;
+    [SerializeField] private Button _closeBtn;
 
     private ScriptableEquipment _equipment;
 
     private void Start()
     {
         _collectBtn.onClick.AddListener(Collect);
+        _closeBtn.onClick.AddListener(() => gameObject.SetActive(false));
     }
 
     public void Init(ScriptableEquipment equipment)
