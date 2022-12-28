@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class UnitBase : MonoBehaviour
@@ -14,14 +15,28 @@ public abstract class UnitBase : MonoBehaviour
 
     public int AC { get; protected set; }
     public int MaxHP { get; protected set; }
-    public int HP { get; protected set; }
+    public int HP;
 
     /* Equipments */
     public List<ScriptableEquipment> Inventory { get; protected set; }
 
     /* Equipped equipments */
     public ScriptableArmor CurrentArmor { get; protected set; }
-    public ScriptableWeapon CurrentWeapon { get; protected set; }
+    public ScriptableWeapon CurrentWeapon
+    {
+        get
+        {
+            if (_currentWeapon == null)
+            {
+                _currentWeapon = Weapons().ToList()[0];
+            }
+            return _currentWeapon;
+
+        }
+        protected set => _currentWeapon = value;
+    }
+    private ScriptableWeapon _currentWeapon;
+
     public ScriptableShield CurrentShield { get; protected set; }
 
     protected Stats CalculateStats(Stats _stats, ScriptableRace _race)
