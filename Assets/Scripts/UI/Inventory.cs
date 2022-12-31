@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
         if (_selectedSlot != null && _selectedSlot.Equipment != null)
         {
             _actionArea.SetActive(true);
-            _itemName.text = _selectedSlot.Equipment.name;
+            _itemName.text = _selectedSlot.Equipment.Name;
             _itemSprite.sprite = _selectedSlot.Equipment.Sprite;
             _itemDescription.text = _selectedSlot.Equipment.Description();
             _classesList.text = $"classes: {String.Join(", ", _selectedSlot.Equipment.Classes)}";

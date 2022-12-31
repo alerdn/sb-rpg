@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class ScriptableEquipment : ScriptableObject
 {
+    public string Name { get => name.Replace("(Clone)", ""); }
     public Sprite Sprite;
     public bool IsEquipped;
     public abstract string Description();

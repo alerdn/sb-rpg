@@ -4,8 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Battlefield : MonoBehaviour
+public class Battlefield : Singleton<Battlefield>
 {
+    public UnitBase CurrentCombatent { get; private set; }
+
     [SerializeField] private List<Unit> _combatents;
     [SerializeField] private SOInt _currentTurn;
     [SerializeField] private SOString _currentCombatentName;
@@ -13,7 +15,6 @@ public class Battlefield : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Button _atkButton;
 
-    private UnitBase _currentCombatent;
 
     private void Start()
     {
@@ -23,26 +24,29 @@ public class Battlefield : MonoBehaviour
 
     private void StartBattle()
     {
-        _currentCombatent = _combatents[Random.Range(0, 2)].Combatant;
+        CurrentCombatent = _combatents[Random.Range(0, 2)].Combatant;
         _currentTurn.value = 1;
         UpdateUI();
     }
 
     private void Attack()
     {
-        string mainAttribute = $"{_currentCombatent.CurrentWeapon.MainAttribute}";
-        int attributeScore = (int)_currentCombatent.Stats.GetType().GetField(mainAttribute).GetValue(_currentCombatent.Stats);
+        string mainAttribute = $"{CurrentCombatent.CurrentWeapon.MainAttribute}";
+        int attributeScore = (int)CurrentCombatent.Stats.GetType().GetField(mainAttribute).GetValue(CurrentCombatent.Stats);
+        int attrModifier = CurrentCombatent.AttributeModifier(attributeScore);
 
-        Unit otherCombatant = _combatents.Find((combatant) => combatant.Combatant != _currentCombatent);
-        otherCombatant.Combatant.HP -= _currentCombatent.CurrentWeapon.Attack(_currentCombatent.AttributeModifier(attributeScore));
+        Debug.Log(CurrentCombatent.CurrentWeapon.Description(attrModifier));
 
-        _currentCombatent = otherCombatant.Combatant;
+        Unit otherCombatant = _combatents.Find((combatant) => combatant.Combatant != CurrentCombatent);
+        otherCombatant.Combatant.HP -= CurrentCombatent.CurrentWeapon.Attack(attrModifier);
+
+        CurrentCombatent = otherCombatant.Combatant;
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        _currentCombatentName.value = _currentCombatent.Name;
+        _currentCombatentName.value = CurrentCombatent.Name;
         _combatents.ForEach((currentCombatant) =>
         {
             currentCombatant.CombatantHP.text = $"{currentCombatant.Combatant.HP}/{currentCombatant.Combatant.MaxHP}";

@@ -28,4 +28,9 @@ public class ScriptableWeapon : ScriptableEquipment
     {
         return $"{DiceAmount}{DiceType} {DamageType} damage";
     }
+
+    public string Description(int modifier)
+    {
+        return $"{DiceAmount}{DiceType} + {modifier} {DamageType} damage";
+    }
 }
